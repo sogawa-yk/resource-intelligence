@@ -1,0 +1,11 @@
+[project]
+name = "Resource Intelligence"
+
+[features]
+streaming = true
+
+[UI]
+name = "Resource Intelligence"
+
+[server]
+port = 8000

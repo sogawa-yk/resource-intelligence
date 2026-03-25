@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ri-agent
+  namespace: ri-agent
+  labels:
+    app: ri-agent
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ri-agent
+  template:
+    metadata:
+      labels:
+        app: ri-agent
+    spec:
+      imagePullSecrets:
+        - name: ocir
+      containers:
+        - name: ri-agent
+          image: yyz.ocir.io/orasejapan/ri-agent:latest
+          ports:
+            - containerPort: 8000
+          env:
+            - name: OCI_TENANT_OCID
+              value: "ocid1.tenancy.oc1..aaaaaaaa3mb7wrcy2ls3u3jsy2soq5ck3lc3q4mczitpdaymbuazc5tkguca"
+            - name: OCI_COMPARTMENT_OCID
+              value: "ocid1.compartment.oc1..aaaaaaaanxm4oucgt5pkgd7sw2vouvckvvxan7ca2lirowaao7krnzlkdkhq"
+            - name: GENAI_MODEL_ID
+              value: "cohere.command-a-03-2025"
+            - name: GENAI_ENDPOINT
+              value: "https://inference.generativeai.us-chicago-1.oci.oraclecloud.com"
+            - name: DATA_DIR
+              value: /data/history
+            - name: OCI_USE_INSTANCE_PRINCIPAL
+              value: "true"
+          volumeMounts:
+            - name: history
+              mountPath: /data/history
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+      volumes:
+        - name: history
+          persistentVolumeClaim:
+            claimName: ri-agent-history
