@@ -1,8 +1,10 @@
 # resource-intelligence Development Guidelines
 
-Auto-generated from all feature plans. Last updated: 2026-03-24
+Auto-generated from all feature plans. Last updated: 2026-03-25
 
 ## Active Technologies
+- Python 3.11+ + chainlit, oci (OCI Python SDK), pydantic, structlog (002-mvp-e2e-validation)
+- ローカルJSONファイル（/data/history） (002-mvp-e2e-validation)
 
 - Python 3.11+ + chainlit, oci（OCI Python SDK）, pydantic (001-oci-resource-intelligence)
 
@@ -22,6 +24,7 @@ cd src [ONLY COMMANDS FOR ACTIVE TECHNOLOGIES][ONLY COMMANDS FOR ACTIVE TECHNOLO
 Python 3.11+: Follow standard conventions
 
 ## Recent Changes
+- 002-mvp-e2e-validation: Added Python 3.11+ + chainlit, oci (OCI Python SDK), pydantic, structlog
 
 - 001-oci-resource-intelligence: Added Python 3.11+ + chainlit, oci（OCI Python SDK）, pydantic
 

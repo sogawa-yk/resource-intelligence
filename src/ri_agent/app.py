@@ -87,11 +87,21 @@ async def on_message(message: cl.Message):
         await cl.Message(content=msg).send()
 
 
+_DEFAULT_RESOURCE_TYPES = [
+    "Instance", "Vcn", "Subnet", "LoadBalancer",
+]
+
+
 async def _handle_resource_search(params: dict):
     """リソース検索を実行し結果を表示する。"""
+    resource_types = params.get("resource_types")
+    if not resource_types:
+        resource_types = _DEFAULT_RESOURCE_TYPES
+        log.info("resource_type_fallback", default_types=resource_types)
+
     request = SearchRequest(
         compartment_ocid=params.get("compartment_ocid"),
-        resource_types=params.get("resource_types"),
+        resource_types=resource_types,
         tag_filters=params.get("tag_filters"),
         regions=params.get("regions"),
         lifecycle_states=params.get("lifecycle_states"),
