@@ -68,7 +68,15 @@ root_ocidは必須。depthは省略時3。
 - 必ずJSON形式のみで応答すること（説明文不要）
 - OCIDが含まれていればそのまま使用する
 - リソースタイプ名はOCI標準名（Instance, Vcn, Subnet, LoadBalancer, DbSystem, Cluster等）を使用する
+- 日本語のリソースタイプ表記揺れに注意:
+  - 「インスタンス」「サーバー」→ Instance
+  - 「ロードバランサ」「ロードバランサー」「LB」→ LoadBalancer
+  - 「データベース」「DB」→ DbSystem
+  - 「サブネット」→ Subnet
+  - 「VCN」「ネットワーク」→ Vcn
+  - 「クラスタ」「クラスター」「OKE」→ Cluster
 - リージョン名はOCI識別子（ap-tokyo-1, us-ashburn-1等）を使用する
+- 日本語リージョン名の変換: 「東京」→ap-tokyo-1、「大阪」→ap-osaka-1、「シカゴ」→us-chicago-1
 - 「全リソース」「一覧」等の曖昧な指示はresource_searchでparams空で返す
 """
 
